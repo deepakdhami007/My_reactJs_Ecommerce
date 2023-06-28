@@ -4,6 +4,7 @@
     
 }
 .cartItem h3{
+    display: flex;
     text-align: center;
     margin-left: 20%;
 }
@@ -12,8 +13,8 @@
     display: flex;
     justify-content: space-between;
     font-weight: bold;
-    padding: 2rem;
-    padding-bottom: 2rem;
+
+    padding-bottom: 0.5rem;
 }
 
 .heading span {
@@ -27,6 +28,7 @@
     align-items: center;
     /* padding: 1rem; */
     margin-left: -10%;
+    border-bottom: 2px solid gray;
 }
 
 .list div {
@@ -39,7 +41,7 @@
 .list span {
     display: flex;
     align-items: center;
-    padding-right: 1rem;
+    padding-right: 1.25rem;
 }
 
 .list img {
@@ -55,12 +57,12 @@
     
 }
 
-.list form input {
+.list input {
     width: 25%;
     margin: 0.5rem;
 }
 
-.list form button {
+.list button {
     border-radius: 6px;
     width: auto;
     display: flex;
@@ -72,4 +74,10 @@
 .price {
     display: flex;
     align-items: center;
+}
+
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }

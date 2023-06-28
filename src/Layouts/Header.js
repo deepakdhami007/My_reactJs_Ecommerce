@@ -1,9 +1,18 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 
 import { Button, Container, Nav, Navbar } from "react-bootstrap";
+import CartContext from "../store/cart-context";
 import classes from "./Header.module.css";
 
 const Header = (props) => {
+  const cartCtx = useContext(CartContext);
+
+  let cartCount = 0
+
+  cartCtx.items.forEach(element => {
+      cartCount += Number(element.quantity);
+  })
+
   const clickStoreHandler = (event) => {
     event.preventDefault();
     props.onClickStore();
@@ -27,7 +36,9 @@ const Header = (props) => {
           </Nav.Link>
           <Nav.Link href="/">About</Nav.Link>
         </Nav>
-        <Button variant="outline-warning" onClick={cartClickHandler}>Cart {3}</Button>{" "}
+        <Button variant="outline-warning" onClick={cartClickHandler}>
+          Cart {cartCount}
+        </Button>{" "}
       </Container>
     </Navbar>
   );

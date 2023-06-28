@@ -14,11 +14,22 @@
     margin-right: 10%;
     
 }
+.content {
+    align-items: center;
+}
 
 @media (max-width: 1200px){
     .modal{
     width: auto;
       left: calc(10% - 20rem);
+    }
+
+}
+
+@media (max-width: 576px){
+    .modal{
+        margin-top: 20%;
+        margin-right: -5%;
     }
 
 }

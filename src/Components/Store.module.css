@@ -1,7 +1,7 @@
 .card {
     display: flex !important;
     justify-content: space-between !important;
-    padding: 1rem;
+    /* padding: 1rem; */
     width: 100%;
     align-items: center !important;
     padding-left: 12% !important;

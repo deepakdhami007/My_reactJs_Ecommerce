@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Button } from "react-bootstrap";
-import CartContext from "../store/cart-context";
+import CartContext from "../../store/cart-context";
 
 import classes from "./CartItems.module.css";
 
@@ -45,7 +45,7 @@ const CartItems = (props) => {
   }
 
   return (
-    <ul className={classes.cartItems}>
+    <ul className={classes.itemcart}>
       <div className={classes.heading}>
         <span>ITEM</span>
         <span>Price</span>

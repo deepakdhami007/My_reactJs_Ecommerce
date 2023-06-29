@@ -1,7 +1,5 @@
-.cartItem {
-    display: flex;
-    justify-content: space-between;
-    
+.itemcart {
+    overflow: auto !important;
 }
 .cartItem h3{
     display: flex;
@@ -58,8 +56,9 @@
 }
 
 .list input {
-    width: 25%;
+    width: 20%;
     margin: 0.5rem;
+    text-align: center;
 }
 
 .list button {

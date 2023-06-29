@@ -3,7 +3,7 @@ import { Button } from "react-bootstrap";
 import CartItems from "./CartItems";
 import Modal from "./Modal";
 import classes from "./Cart.module.css";
-import CartContext from "../../store/cart-context";
+import CartContext from "../../storeContext/cart-context";
 
 const Cart = (props) => {
   const cartCtx = useContext(CartContext);

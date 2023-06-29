@@ -1,11 +1,12 @@
 import React, { useContext, useState } from "react";
 
 import { Button, Container, Nav, Navbar } from "react-bootstrap";
-import { Link, NavLink } from "react-router-dom";
-import CartContext from "../store/cart-context";
+import { Link, NavLink, useLocation } from "react-router-dom";
+import CartContext from "../storeContext/cart-context";
 import classes from "./Header.module.css";
 
 const Header = (props) => {
+    const location = useLocation();
   const cartCtx = useContext(CartContext);
 
   let cartCount = 0;
@@ -19,6 +20,7 @@ const Header = (props) => {
     props.cartHandler();
   };
 
+  const isStoreVisible = location.pathname === "/store";
   return (
     <Navbar className={classes.nav} bg="dark" expand="sm" variant="dark">
       <Container>
@@ -30,9 +32,9 @@ const Header = (props) => {
           <Nav.Link as={Link} to="/store">Store</Nav.Link>
           <Nav.Link as={Link} to="/about">About</Nav.Link>
         </Nav>
-        <Button variant="outline-warning" onClick={cartClickHandler}>
+        {isStoreVisible && (<Button variant="outline-warning" onClick={cartClickHandler}>
           Cart {cartCount}
-        </Button>{" "}
+        </Button>)}
       </Container>
     </Navbar>
   );

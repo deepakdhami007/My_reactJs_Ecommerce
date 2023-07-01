@@ -7,7 +7,6 @@ const RootLayout = props => {
   return (
     <>
       <Header cartHandler={props.cartHandler} />
-      <Home />
       <Outlet />
     </>
   );

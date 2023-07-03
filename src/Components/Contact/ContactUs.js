@@ -33,8 +33,9 @@ const ContactUs = (props) => {
 
   return (
     <div className={classes.form}>
-        <h2>Contact Us</h2>
+        
       <form onSubmit={submitHandler}>
+        <h2>Contact Us</h2>
         <div className={classes.name}>
           <label>Name:</label>
           <input type="text" id="name" />

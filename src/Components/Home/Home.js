@@ -18,7 +18,7 @@ const Home = () => {
         <button className={classes.latestBtn}>Get our Latest Album</button>
         <button className={classes.playBtn}>►</button>
       </section>
-      <section className={classes.lowerSec}>
+      <section className={classes.lowerSection}>
           <h2>TOURS</h2>
         {toursArr.map((ele) => (
           <div>

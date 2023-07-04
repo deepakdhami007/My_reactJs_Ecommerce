@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { Card, Container, Row, Button, Col } from "react-bootstrap";
 import { Link, Route, Routes } from "react-router-dom";
 import CartContext from "../../storeContext/cart-context";
-import Product from "./Product";
 import classes from "./Store.module.css";
 
 

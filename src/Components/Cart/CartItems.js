@@ -41,7 +41,11 @@ const CartItems = (props) => {
   };
 
   const changeQuantityhandler = (event) => {
-      console.log(event.target.id);
+    console.log(event.target.id);
+  };
+
+  const clickPurchaseHandler = () => {
+    alert('Thanks for purchase.')
   }
 
   return (
@@ -58,7 +62,12 @@ const CartItems = (props) => {
             <span>{ele.title}</span>
           </div>
           <span>{ele.price}</span>
-          <input type="number" step="1" value={ele.quantity} onChange={changeQuantityhandler} />
+          <input
+            type="number"
+            step="1"
+            value={ele.quantity}
+            onChange={changeQuantityhandler}
+          />
           <button id={idx} onClick={deleteHandler}>
             Remove
           </button>
@@ -67,6 +76,9 @@ const CartItems = (props) => {
       <div className={classes.footer}>
         <h5>Total</h5>
         <span>${total}</span>
+      </div>
+      <div>
+        <Button variant="success" onClick={clickPurchaseHandler}>Purchase</Button>
       </div>
     </ul>
   );

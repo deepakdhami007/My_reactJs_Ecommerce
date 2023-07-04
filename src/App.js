@@ -19,6 +19,7 @@ import Product from "./Components/Store/Product";
 import Login from "./Components/Login/Login";
 import AuthContext from "./storeContext/auth-context";
 import Header from "./Layouts/Header";
+import Footer from "./Layouts/Footer";
 
 const productsArrs = [
   {
@@ -89,7 +90,6 @@ function App() {
   //     ],
   //   },
   // ]);
-  
 
   const clickHandler = () => {
     if (cartVisible == true) {
@@ -102,12 +102,12 @@ function App() {
       <div className={classes.con} onClick={clickHandler}>
         <Routes>
           <Route path="/" element={<RootLayout cartHandler={visibleCartHandler} />}>
-            <Route index element={<Home />} />
-            <Route path="store" element={authCtx.isLoggedIn ? <Store productsArr={productsArrs} /> : <Navigate to='/login' />} />
-            <Route path="about" element={<About />} />
-            <Route path="contactus" element={<ContactUs />} />
-            <Route path="login" element={<Login />} />
-            <Route path="store/:productId" element={<Product productsArr={productsArrs} /> }/>
+              <Route index element={<Home />} />
+              <Route path="store" element={authCtx.isLoggedIn ? (<Store productsArr={productsArrs} />) : (<Navigate to="/login" />)}/>
+              <Route path="about" element={<About />} />
+              <Route path="contactus" element={<ContactUs />} />
+              <Route path="login" element={<Login />} />
+              <Route path="store/:productId" element={<Product productsArr={productsArrs} />}/>
           </Route>
         </Routes>
         {cartVisible && <Cart />}

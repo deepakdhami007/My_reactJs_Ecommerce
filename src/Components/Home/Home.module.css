@@ -1,6 +1,8 @@
 .container{
     align-items: center;
     text-align: center;
+    /* overflow: auto; */
+    height: 80%;
 }
 
 .upperSec {

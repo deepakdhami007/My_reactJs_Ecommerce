@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import AuthContext from "./auth-context";
+import CartContext from "./cart-context";
 
 const AuthContextProvider = (props) => {
   const [token, setToken] = useState(null);
   const [userEmail, setUserEmail] = useState(null);
+
+  const cartCtx = useContext(CartContext);
 
   if (token == null && localStorage.length !== 0) {
     setToken(localStorage["user"]);
@@ -15,6 +18,7 @@ const AuthContextProvider = (props) => {
   const loginHandler = (tokenId, email) => {
     setToken(tokenId);
     setUserEmail(email);
+    cartCtx.onLogin();
     localStorage.setItem("user", tokenId);
     localStorage.setItem('userEmail', email)
   };
@@ -25,12 +29,14 @@ const AuthContextProvider = (props) => {
     localStorage.removeItem("user");
     localStorage.removeItem('userEmail')
   };
+  // setTimeout(() => {
+  //   logoutHandler();
+  // }, 5*2000);
 
   const authContext = {
     token: token,
     isLoggedIn: userLoggedIn,
     userEmail: userEmail,
-    // addUserEmail: addUserEmailHandler,
     login: loginHandler,
     logout: logoutHandler,
   };

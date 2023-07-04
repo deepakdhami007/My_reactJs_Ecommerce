@@ -8,11 +8,15 @@ const CartProvider = (props) => {
   const [itemsArr, updateItemsArr] = useState([]);
   const authCtx = useContext(AuthContext);
 
-  const reStore = async () => {
+  useEffect(() => {
+    updateItemsArr([]);
+  }, [authCtx.userEmail]);
+
+  const onLoginRestore = async () => {
     try {
       const email = authCtx.userEmail.replace(/[@.]/g, "");
       const res = await axios.get(
-        `https://crudcrud.com/api/c55dd8b9bc7840c3b5e077c25ba8ff77/cart${email}`
+        `https://crudcrud.com/api/b1b1bd2741ff4a67b6ce70c9ca43d134/cart${email}`
       );
       const resData = await res.data;
       let arr = [];
@@ -21,15 +25,17 @@ const CartProvider = (props) => {
           arr.push(element.cartItems[0]);
         }
       });
-      updateItemsArr(arr);
+      updateItemsArr([...arr]);
     } catch (error) {
       console.log("Something wrong on refresh");
     }
   };
-
-  if (authCtx.isLoggedIn && itemsArr.length == 0) {
-    reStore();
-  }
+  useEffect(() => {
+    onLoginRestore();
+  }, [authCtx.userEmail]);
+  useEffect(() => {
+    onLoginRestore();
+  }, []);
 
   const addCartItemHandler = (item) => {
     updateItemsArr([...itemsArr, item]);
@@ -42,7 +48,7 @@ const CartProvider = (props) => {
     try {
       const email = authCtx.userEmail.replace(/[@.]/g, "");
       const res = await axios.get(
-        `https://crudcrud.com/api/c55dd8b9bc7840c3b5e077c25ba8ff77/cart${email}`
+        `https://crudcrud.com/api/b1b1bd2741ff4a67b6ce70c9ca43d134/cart${email}`
       );
       const resData = await res.data;
       resData.forEach((element) => {
@@ -60,7 +66,7 @@ const CartProvider = (props) => {
     try {
       const email = authCtx.userEmail.replace(/[@.]/g, "");
       const res = await axios.delete(
-        `https://crudcrud.com/api/c55dd8b9bc7840c3b5e077c25ba8ff77/cart${email}/${backendId}`
+        `https://crudcrud.com/api/b1b1bd2741ff4a67b6ce70c9ca43d134/cart${email}/${backendId}`
       );
     } catch (error) {
       console.log("Delete Error");
@@ -73,7 +79,7 @@ const CartProvider = (props) => {
       try {
         const email = authCtx.userEmail.replace(/[@.]/g, "");
         const res = await axios.get(
-          `https://crudcrud.com/api/c55dd8b9bc7840c3b5e077c25ba8ff77/cart${email}`
+          `https://crudcrud.com/api/b1b1bd2741ff4a67b6ce70c9ca43d134/cart${email}`
         );
         const resData = await res.data;
         resData.forEach((element) => {
@@ -81,7 +87,6 @@ const CartProvider = (props) => {
             if (cartItem.id === eleId) {
               backendId = element._id;
             }
-            // console.log(cartItem.id);
           });
         });
       } catch (error) {
@@ -95,7 +100,7 @@ const CartProvider = (props) => {
       try {
         const email = authCtx.userEmail.replace(/[@.]/g, "");
         const res = await axios.put(
-          `https://crudcrud.com/api/c55dd8b9bc7840c3b5e077c25ba8ff77/cart${email}/${backendId}`,
+          `https://crudcrud.com/api/b1b1bd2741ff4a67b6ce70c9ca43d134/cart${email}/${backendId}`,
           {
             cartItems: [copyArr[index]],
           }
@@ -106,13 +111,11 @@ const CartProvider = (props) => {
       updateItemsArr(copyArr);
     }
   };
-
-  // useEffect(() => {
   const saveCartItemsToBackend = async (item) => {
     try {
       const email = authCtx.userEmail.replace(/[@.]/g, "");
       const res = await axios.post(
-        `https://crudcrud.com/api/c55dd8b9bc7840c3b5e077c25ba8ff77/cart${email}`,
+        `https://crudcrud.com/api/b1b1bd2741ff4a67b6ce70c9ca43d134/cart${email}`,
         {
           cartItems: [item],
         }
@@ -122,16 +125,13 @@ const CartProvider = (props) => {
       console.log("Error saving cart items to backend:", error);
     }
   };
-  //   if(itemsArr.length !== 0){
-  //     saveCartItemsToBackend();
-  //   }
-  // }, [itemsArr, authCtx.userEmail]);
 
   const cartContext = {
     items: itemsArr,
     addCartItem: addCartItemHandler,
     removeCartItem: removeCartItemHandler,
     quantityChange: quantityChangeHandler,
+    onLogin: onLoginRestore,
   };
 
   return (

@@ -9,6 +9,8 @@ import {
   createBrowserRouter,
   Routes,
   Route,
+  useNavigate,
+  Navigate,
 } from "react-router-dom";
 import RootLayout from "./Layouts/Root";
 import Home from "./Components/Home/Home";
@@ -60,6 +62,7 @@ const productsArrs = [
 function App() {
   const [cartVisible, setCartVisible] = useState(false);
   const authCtx = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const visibleCartHandler = () => {
     if (cartVisible == false) {
@@ -100,7 +103,7 @@ function App() {
         <Routes>
           <Route path="/" element={<RootLayout cartHandler={visibleCartHandler} />}>
             <Route index element={<Home />} />
-            <Route path="store" element={<Store productsArr={productsArrs} />} />
+            <Route path="store" element={authCtx.isLoggedIn ? <Store productsArr={productsArrs} /> : <Navigate to='/login' />} />
             <Route path="about" element={<About />} />
             <Route path="contactus" element={<ContactUs />} />
             <Route path="login" element={<Login />} />
